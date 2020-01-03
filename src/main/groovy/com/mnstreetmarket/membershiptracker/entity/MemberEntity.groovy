@@ -6,16 +6,14 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.OneToMany
-import javax.persistence.SequenceGenerator
 import javax.persistence.Table
 
 @Entity
 @Table(name = 'member')
-@SequenceGenerator(name="my_seq",sequenceName="MY_SEQ", allocationSize=1, initialValue = 100)
 class MemberEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer memberId
 
     String firstName
