@@ -1,5 +1,7 @@
 package com.mnstreetmarket.membershiptracker.entity
 
+
+import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -24,7 +26,7 @@ class MemberEntity {
     @JoinColumn(name = 'member_id')
     List<MemberAddressEntity> addresses = []
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = 'member_id')
     List<MemberEmailEntity> emails = []
 
