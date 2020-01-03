@@ -10,6 +10,19 @@
 
 <ul th:each="member :  ${members}">
   <li th:text="${member.firstName + ' ' + member.lastName}"></li>
+
+  <ul th:each="email : ${member.emails}">
+    <li th:text="${email.emailAddress}"></li>
+  </ul>
+  <ul th:each="phone : ${member.phoneNumbers}">
+    <li th:text="${phone.phoneNumber}"></li>
+  </ul>
+  <ul th:each="familyMember : ${member.family}">
+    <li th:text="${familyMember.firstName}"></li>
+  </ul>
+  <ul th:each="address : ${member.addresses}">
+    <li th:text="${address.streetAddress}"></li>
+  </ul>
 </ul>
 
 </body>
