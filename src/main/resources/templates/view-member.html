@@ -12,11 +12,7 @@
 
 <h2 th:text="${member.firstName + ' ' + member.lastName}"></h2>
 
-<h3>Email</h3>
-<ul>
-  <li th:each="email : ${member.emails}"
-      th:text="${email.emailAddress}"></li>
-</ul>
+<span th:text="${member.email}"></span>
 
 <h3>Phone</h3>
 <ul>
