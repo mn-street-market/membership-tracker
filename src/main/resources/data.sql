@@ -1,12 +1,7 @@
-INSERT INTO member (member_id, first_name, last_name, is_active) VALUES
-  (1, 'Aliko', 'Dangote', true),
-  (2, 'Bill', 'Gates', true),
-  (3, 'Folrunsho', 'Alakija', true);
-
-INSERT INTO member_email (member_id, email_address) VALUES
-  (1, 'dangote@test.com'),
-  (2, 'gates@test.com'),
-  (3, 'alakija@test.com');
+INSERT INTO member (member_id, first_name, last_name, is_active, email, password)
+VALUES (1, 'Aliko', 'Dangote', true, 'a@test.com', '{noop}pass'),
+       (2, 'Bill', 'Gates', true, 'b@test.com', '{noop}pass'),
+       (3, 'Folrunsho', 'Alakija', true, 'c@test.com', '{noop}pass');
 
 INSERT INTO member_phone (member_phone_id, member_id, phone_number) VALUES
   (1, 1, '123-123-1234'),

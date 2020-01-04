@@ -1,7 +1,6 @@
 package com.mnstreetmarket.membershiptracker.controller
 
 import com.mnstreetmarket.membershiptracker.dto.ApplicationDto
-import com.mnstreetmarket.membershiptracker.entity.MemberEmailEntity
 import com.mnstreetmarket.membershiptracker.entity.MemberEntity
 import com.mnstreetmarket.membershiptracker.repository.MemberRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -32,7 +31,7 @@ class MemberController {
         memberRepository.save(new MemberEntity(
                 firstName: applicationDto.firstName,
                 lastName: applicationDto.lastName,
-                emails: [new MemberEmailEntity(emailAddress: applicationDto.email)]
+                email: applicationDto.email
         ))
         return getMembers(model)
     }

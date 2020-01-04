@@ -1,9 +1,7 @@
 package com.mnstreetmarket.membershiptracker.entity
 
 
-import javax.persistence.CascadeType
 import javax.persistence.Entity
-import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -23,13 +21,15 @@ class MemberEntity {
 
     String lastName
 
+    String email
+
+    String password
+
+    boolean isActive
+
     @OneToMany
     @JoinColumn(name = 'member_id')
     List<MemberAddressEntity> addresses = []
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = 'member_id')
-    List<MemberEmailEntity> emails = []
 
     @OneToMany
     @JoinColumn(name = 'member_id')
@@ -38,7 +38,5 @@ class MemberEntity {
     @OneToMany
     @JoinColumn(name = 'member_id')
     List<MemberFamilyEntity> family = []
-
-    boolean isActive
 
 }

@@ -32,11 +32,9 @@ class MemberDetailsService implements UserDetailsService {
     }
 
     static User asUser(MemberEntity member) {
-        String username = member.emails.first().emailAddress
-        String password = '{noop}password' // TODO
         List<GrantedAuthority> authorities = [
                 new SimpleGrantedAuthority('ROLE_USER')
         ]
-        new User(username, password, authorities)
+        new User(member.email, member.password, authorities)
     }
 }
