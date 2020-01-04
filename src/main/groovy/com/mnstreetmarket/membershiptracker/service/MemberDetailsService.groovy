@@ -35,6 +35,11 @@ class MemberDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = [
                 new SimpleGrantedAuthority('ROLE_USER')
         ]
+
+        if (member.email == 'c@test.com') {
+            authorities << new SimpleGrantedAuthority('ROLE_ADMIN')
+        }
+
         new User(member.email, member.password, authorities)
     }
 }
