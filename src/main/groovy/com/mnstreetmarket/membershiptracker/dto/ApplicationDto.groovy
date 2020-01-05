@@ -36,6 +36,8 @@ class ApplicationDto {
 
     boolean student
 
+    List<String> familyMembers = []
+
     List<String> errorMessages = []
 
     String getErrorMessage() {
