@@ -12,7 +12,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home", '/h2-console/**').permitAll()
+                .antMatchers('/', '/join', '/h2-console/**').permitAll()
                 .anyRequest().authenticated().and().formLogin()
 
         http.csrf().disable()

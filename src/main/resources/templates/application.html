@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Application</title>
@@ -8,10 +9,24 @@
 
 <h1>Application</h1>
 
-<form action="/members" method="post">
-  <input name="firstName" placeholder="First Name"/>
-  <input name="lastName" placeholder="Last Name"/>
-  <input name="email" placeholder="Email"/>
+<span th:text="${error}"></span>
+
+<form action="/join" method="post">
+  <label for="firstName">First Name</label><input name="firstName" id="firstName" placeholder="First Name"/><br/>
+  <label for="lastName">Last Name</label><input name="lastName" id="lastName" placeholder="Last Name"/><br/>
+  <label for="email">Email</label><input name="email" id="email" placeholder="Email"/><br/>
+  <label for="phoneNumber">Phone Number</label><input name="phoneNumber" id="phoneNumber"
+                                                      placeholder="320-363-1234"/><br/>
+  <label for="password1">Password</label><input name="password1" id="password1" placeholder="Password" type="password"/>
+  <input name="password2" id="password2" placeholder="Confirm Password" type="password"/><br/>
+  <label for="streetAddress">Street Address</label><input name="streetAddress" id="streetAddress"
+                                                          placeholder="123 Oak Street"/><br/>
+  <label for="apartmentNumber">Apt #/Room #/Unit</label><input name="apartmentNumber" id="apartmentNumber"
+                                                               placeholder="#205"/><br/>
+  <label for="city">City</label><input name="city" id="city" placeholder="City"/><br/>
+  <label for="state">State</label><input name="state" id="state" placeholder="State"/><br/>
+  <label for="zipCode">Zip Code</label><input name="zipCode" id="zipCode" placeholder="Zip Code"/><br/>
+  <label for="student">Are you a student?</label><input name="student" id="student" type="checkbox"><br/>
   <button type="submit">Submit Form</button>
   <button type="reset">Clear Form</button>
 </form>

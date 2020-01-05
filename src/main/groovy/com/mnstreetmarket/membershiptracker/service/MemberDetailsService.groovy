@@ -40,6 +40,6 @@ class MemberDetailsService implements UserDetailsService {
             authorities << new SimpleGrantedAuthority('ROLE_ADMIN')
         }
 
-        new User(member.email, member.password, authorities)
+        new User(member.email, member.password ?: '{noop}pass', authorities)
     }
 }
