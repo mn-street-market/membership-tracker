@@ -2,18 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Members</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
 
-<h1>Members</h1>
+<div class="container">
 
-<ul th:each="member :  ${members}">
-  <li>
-    <a th:href="${'members/'+member.memberId}"
-       th:text="${member.firstName + ' ' + member.lastName}"></a>
-  </li>
-</ul>
+  <h1>Members</h1>
+
+  <ul th:each="member :  ${members}">
+    <li>
+      <a th:href="${'members/'+member.memberId}"
+         th:text="${member.firstName + ' ' + member.lastName}"></a>
+    </li>
+  </ul>
+
+</div>
 
 </body>
 </html>

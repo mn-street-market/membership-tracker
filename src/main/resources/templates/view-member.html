@@ -2,35 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Members</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
 
-<a href="/members">View All Members</a>
+<div class="container">
 
-<h1>Member</h1>
+  <a href="/members">View All Members</a>
 
-<h2 th:text="${member.firstName + ' ' + member.lastName}"></h2>
+  <h1>Member</h1>
 
-<span th:text="${member.email}"></span>
+  <h2 th:text="${member.firstName + ' ' + member.lastName}"></h2>
 
-<h3>Phone</h3>
-<ul>
-  <li th:each="phone : ${member.phoneNumbers}"
-      th:text="${phone.phoneNumber}"></li>
-</ul>
+  <span th:text="${member.email}"></span>
 
-<h3>Family Members</h3>
-<ul>
-  <li th:each="familyMember : ${member.family}"
-      th:text="${familyMember.firstName + ' ' + familyMember.lastName}"></li>
-</ul>
+  <h3>Phone</h3>
+  <ul>
+    <li th:each="phone : ${member.phoneNumbers}"
+        th:text="${phone.phoneNumber}"></li>
+  </ul>
 
-<h3>Address</h3>
-<ul>
-  <li th:each="address : ${member.addresses}"
-      th:text="${address.streetAddress + ', ' + address.city + ', ' + address.state + ' ' + address.zipCode}"></li>
-</ul>
+  <h3>Family Members</h3>
+  <ul>
+    <li th:each="familyMember : ${member.family}"
+        th:text="${familyMember.firstName + ' ' + familyMember.lastName}"></li>
+  </ul>
+
+  <h3>Address</h3>
+  <ul>
+    <li th:each="address : ${member.addresses}"
+        th:text="${address.streetAddress + ', ' + address.city + ', ' + address.state + ' ' + address.zipCode}"></li>
+  </ul>
+
+</div>
 
 </body>
 </html>

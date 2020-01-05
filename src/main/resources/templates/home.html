@@ -4,48 +4,53 @@
       lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Home</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
+<div class="container">
+
+  <h1>Home</h1>
+
+  <div sec:authorize="true">
+    authorize - always
+  </div>
+
+  <div sec:authorize="false">
+    authorize - never
+  </div>
+
+  <div class="container" sec:authorize="isAnonymous()">
+    authorize - anonymous
+  </div>
+
+  <div class="container" sec:authorize="!isAnonymous()">
+    authorize - not anonymous
+  </div>
+
+  <div class="container" sec:authorize="isAuthenticated()">
+    <a href="/logout">logout</a>
+  </div>
+
+  <div class="container" sec:authorize="!isAuthenticated()">
+    <a href="/login">login</a>
+  </div>
+
+  <strong> Username: <span sec:authentication="name"></span> </strong>
+  <!--<div th:text="${#authorization.getAuthentication()}">1</div>-->
+  <div th:text="${40}">1</div>
 
 
-<h1>Home</h1>
+  <div sec:authorize="hasAuthority('ADMIN')"> Has Authority ADMIN</div>
+  <div sec:authorize="hasAuthority('USER')"> Has Authority USER</div>
+  <div sec:authorize="hasRole('ROLE_ADMIN')">Has Role ROLE_ADMIN</div>
+  <div sec:authorize="hasRole('ROLE_USER')">Has Role ROLE_USER</div>
+  <div sec:authorize="hasRole('ADMIN')">Has Role ADMIN</div>
+  <div sec:authorize="hasRole('USER')">Has Role USER</div>
 
-<div sec:authorize="true">
-  authorize - always
 </div>
-
-<div sec:authorize="false">
-  authorize - never
-</div>
-
-<div class="container" sec:authorize="isAnonymous()">
-  authorize - anonymous
-</div>
-
-<div class="container" sec:authorize="!isAnonymous()">
-  authorize - not anonymous
-</div>
-
-<div class="container" sec:authorize="isAuthenticated()">
-  <a href="/logout">logout</a>
-</div>
-
-<div class="container" sec:authorize="!isAuthenticated()">
-  <a href="/login">login</a>
-</div>
-
-<strong> Username: <span sec:authentication="name"></span> </strong>
-<!--<div th:text="${#authorization.getAuthentication()}">1</div>-->
-<div th:text="${40}">1</div>
-
-
-<div sec:authorize="hasAuthority('ADMIN')"> Has Authority ADMIN</div>
-<div sec:authorize="hasAuthority('USER')"> Has Authority USER</div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">Has Role ROLE_ADMIN</div>
-<div sec:authorize="hasRole('ROLE_USER')">Has Role ROLE_USER</div>
-<div sec:authorize="hasRole('ADMIN')">Has Role ADMIN</div>
-<div sec:authorize="hasRole('USER')">Has Role USER</div>
 
 </body>
 </html>
