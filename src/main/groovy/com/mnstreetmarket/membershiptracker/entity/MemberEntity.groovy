@@ -36,7 +36,7 @@ class MemberEntity {
     Timestamp membershipPaidDate
 
     @Column(nullable = true)
-    Double membershipPaidAmount
+    Double membershipFeeAmount
 
     @Column(nullable = true)
     Timestamp emailVerifiedDate

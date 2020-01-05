@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 
+import javax.annotation.security.RolesAllowed
+
 @Controller
 @RequestMapping("/admin")
+@RolesAllowed(['ROLE_ADMIN'])
 class AdminController {
 
     @Autowired

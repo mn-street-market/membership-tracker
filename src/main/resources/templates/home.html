@@ -22,7 +22,13 @@
   </div>
 
   <div sec:authorize="isAuthenticated()">
-    <strong> Username: <span sec:authentication="name"></span> </strong>
+    <strong> Welcome <span th:text="${member.firstName}"></span> </strong>
+    <p>You have been a member since <span th:text="${member.joinDate}"></span>.</p>
+    <p th:if="${member.membershipPaidDate == null}">Your membership fee of <span
+        th:text="${member.membershipFeeAmount}"></span> has not been received yet.</p>
+    <p th:if="${member.membershipPaidDate != null}">Your membership fee of <span
+        th:text="${member.membershipFeeAmount}"></span> was received on <span
+        th:text="${member.membershipPaidDate}"></span>.</p>
   </div>
 
   <footer style="background-color: #4996ad; width: 960px;">

@@ -62,7 +62,7 @@ class ApplicationService {
     private void validate(ApplicationDto application) {
         application.errorMessages.addAll(validator.validate(application).collect { it.message })
 
-        if (memberRepository.findAll().any { it.email == application.email }) {
+        if (memberRepository.findByEmail(application.email).isPresent()) {
             application.errorMessages << "Member with email $application.email already exists!"
         }
 
