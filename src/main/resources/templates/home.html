@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html
-    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-    lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,8 +15,10 @@
 
   <h1>Home</h1>
 
+  <span th:text="${alert}"></span>
+
   <div sec:authorize="!isAuthenticated()">
-    <a href="/join">Join the Minnesota Street Market Co-op</a>
+    <a href="/join">Join the Minnesota Street Market Co-op</a> or <a href="/login">login</a> if you are already a member
   </div>
 
   <div sec:authorize="isAuthenticated()">

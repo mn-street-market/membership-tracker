@@ -29,7 +29,7 @@
   <h3>Family Members</h3>
   <ul>
     <li th:each="familyMember : ${member.family}"
-        th:text="${familyMember.firstName + ' ' + familyMember.lastName}"></li>
+        th:text="${familyMember.name}"></li>
   </ul>
 
   <h3>Address</h3>

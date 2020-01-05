@@ -1,14 +1,16 @@
 package com.mnstreetmarket.membershiptracker.entity
 
+import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.OneToMany
 import javax.persistence.Table
-import java.sql.Date
+import java.sql.Timestamp
 
 @Entity
 @Table(name = 'member')
@@ -26,22 +28,28 @@ class MemberEntity {
     Boolean isActive
     @Column(nullable = true)
     Boolean isStudentMember
-    @Column(nullable = true)
-    Boolean isEmailConfirmed
-    @Column(nullable = true)
-    Boolean isMembershipPaid
-    @Column(nullable = true)
-    Date joinDate
 
-    @OneToMany
+    @Column(nullable = true)
+    Timestamp joinDate
+
+    @Column(nullable = true)
+    Timestamp membershipPaidDate
+
+    @Column(nullable = true)
+    Double membershipPaidAmount
+
+    @Column(nullable = true)
+    Timestamp emailVerifiedDate
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = 'member_id')
     List<MemberAddressEntity> addresses = []
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = 'member_id')
     List<MemberPhoneEntity> phoneNumbers = []
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = 'member_id')
     List<MemberFamilyEntity> family = []
 

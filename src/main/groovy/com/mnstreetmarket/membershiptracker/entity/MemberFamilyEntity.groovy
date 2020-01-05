@@ -14,8 +14,6 @@ class MemberFamilyEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     int memberFamilyId
 
-    String firstName
-
-    String lastName
+    String name
 
 }
