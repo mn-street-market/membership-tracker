@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,12 +11,13 @@
 <body>
 
 <div class="container">
-  <img src="https://mnstreetmarket.files.wordpress.com/2019/09/mn_streetmarket_newwebbanner-110.png"/>
-
+  <div th:replace="header"></div>
 
   <h1>Application</h1>
 
-  <span th:text="${error}"></span>
+  <div th:if="${referral}" class="alert alert-success" role="alert"
+       th:text="${'Referral reward will be applied to ' + referral.firstName + ' ' + referral.lastName + ' after membership is paid.'}"></div>
+  <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
 
   <form action="/join" method="post">
     <label for="firstName">First Name</label><input name="firstName" id="firstName" placeholder="First Name"/><br/>
@@ -44,19 +44,7 @@
     <button type="reset">Clear Form</button>
   </form>
 
-  <footer style="background-color: #4996ad; width: 960px;">
-    <div sec:authorize="isAuthenticated()">
-      <a href="/logout">logout</a>
-    </div>
-
-    <div sec:authorize="!isAuthenticated()">
-      <a href="/login">login</a>
-    </div>
-
-    <div sec:authorize="hasRole('ADMIN')">
-      <a href="/admin/members">View All Members</a>
-    </div>
-  </footer>
+  <div th:replace="footer"></div>
 
 </div>
 </body>

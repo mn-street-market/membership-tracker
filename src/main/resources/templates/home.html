@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-  <img src="https://mnstreetmarket.files.wordpress.com/2019/09/mn_streetmarket_newwebbanner-110.png"/>
+  <div th:replace="header"></div>
 
   <h1>Home</h1>
 
@@ -24,26 +24,14 @@
   <div sec:authorize="isAuthenticated()">
     <strong> Welcome <span th:text="${member.firstName}"></span> </strong>
     <p>You have been a member since <span th:text="${member.joinDate}"></span>.</p>
-    <p th:if="${member.membershipPaidDate == null}">Your membership fee of <span
+    <p th:if="${member.membershipPaidDate == null}">Your membership fee of $<span
         th:text="${member.membershipFeeAmount}"></span> has not been received yet.</p>
-    <p th:if="${member.membershipPaidDate != null}">Your membership fee of <span
+    <p th:if="${member.membershipPaidDate != null}">Your membership fee of $<span
         th:text="${member.membershipFeeAmount}"></span> was received on <span
         th:text="${member.membershipPaidDate}"></span>.</p>
   </div>
 
-  <footer style="background-color: #4996ad; width: 960px;">
-    <div sec:authorize="isAuthenticated()">
-      <a href="/logout">logout</a>
-    </div>
-
-    <div sec:authorize="!isAuthenticated()">
-      <a href="/login">login</a>
-    </div>
-
-    <div sec:authorize="hasRole('ADMIN')">
-      <a href="/admin/members">View All Members</a>
-    </div>
-  </footer>
+  <div th:replace="footer"></div>
 </div>
 
 </body>

@@ -4,26 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Members</title>
+  <title>Refer A Friend</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
-
 <div class="container">
   <div th:replace="header"></div>
 
-  <h1>Members</h1>
+  <h1>Refer A Friend</h1>
 
-  <ul th:each="member :  ${members}">
-    <li>
-      <a th:href="${'members/'+member.memberId}"
-         th:text="${member.firstName + ' ' + member.lastName}"></a>
-    </li>
-  </ul>
+  <p>Send the following link to your friends:</p>
+  <p><span th:text="${referralLink}"></span></p>
+  <p>If they sign up, you will receive a referral reward.</p>
 
   <div th:replace="footer"></div>
-
 </div>
 
 </body>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<body>
+<div th:fragment="nav">
+
+  <a href="/">Home</a>
+
+  <span sec:authorize="isAuthenticated()">
+      | <a href="/logout">Logout</a>
+      | <a href="/my-account">My Account</a>
+      | <a href="/refer-friend">Refer a Friend</a>
+    </span>
+
+  <span sec:authorize="!isAuthenticated()">
+      | <a href="/login">Login</a>
+      | <a href="/join">Join</a>
+    </span>
+
+  <span sec:authorize="hasRole('ADMIN')">
+      | <a href="/admin/members">View All Members</a>
+    </span>
+
+</div>
+
+</body>
+</html>
