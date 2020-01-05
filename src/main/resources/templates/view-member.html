@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,8 +12,7 @@
 <body>
 
 <div class="container">
-
-  <a href="/members">View All Members</a>
+  <img src="https://mnstreetmarket.files.wordpress.com/2019/09/mn_streetmarket_newwebbanner-110.png"/>
 
   <h1>Member</h1>
 
@@ -36,6 +37,20 @@
     <li th:each="address : ${member.addresses}"
         th:text="${address.streetAddress + ', ' + address.city + ', ' + address.state + ' ' + address.zipCode}"></li>
   </ul>
+
+  <footer style="background-color: #4996ad; width: 960px;">
+    <div sec:authorize="isAuthenticated()">
+      <a href="/logout">logout</a>
+    </div>
+
+    <div sec:authorize="!isAuthenticated()">
+      <a href="/login">login</a>
+    </div>
+
+    <div sec:authorize="hasRole('ADMIN')">
+      <a href="/admin/members">View All Members</a>
+    </div>
+  </footer>
 
 </div>
 

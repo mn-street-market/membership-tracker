@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      lang="en">
+<html
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+    lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,45 +11,31 @@
 </head>
 <body>
 <div class="container">
+  <img src="https://mnstreetmarket.files.wordpress.com/2019/09/mn_streetmarket_newwebbanner-110.png"/>
 
   <h1>Home</h1>
 
-  <div sec:authorize="true">
-    authorize - always
+  <div sec:authorize="!isAuthenticated()">
+    <a href="/join">Join the Minnesota Street Market Co-op</a>
   </div>
 
-  <div sec:authorize="false">
-    authorize - never
+  <div sec:authorize="isAuthenticated()">
+    <strong> Username: <span sec:authentication="name"></span> </strong>
   </div>
 
-  <div class="container" sec:authorize="isAnonymous()">
-    authorize - anonymous
-  </div>
+  <footer style="background-color: #4996ad; width: 960px;">
+    <div sec:authorize="isAuthenticated()">
+      <a href="/logout">logout</a>
+    </div>
 
-  <div class="container" sec:authorize="!isAnonymous()">
-    authorize - not anonymous
-  </div>
+    <div sec:authorize="!isAuthenticated()">
+      <a href="/login">login</a>
+    </div>
 
-  <div class="container" sec:authorize="isAuthenticated()">
-    <a href="/logout">logout</a>
-  </div>
-
-  <div class="container" sec:authorize="!isAuthenticated()">
-    <a href="/login">login</a>
-  </div>
-
-  <strong> Username: <span sec:authentication="name"></span> </strong>
-  <!--<div th:text="${#authorization.getAuthentication()}">1</div>-->
-  <div th:text="${40}">1</div>
-
-
-  <div sec:authorize="hasAuthority('ADMIN')"> Has Authority ADMIN</div>
-  <div sec:authorize="hasAuthority('USER')"> Has Authority USER</div>
-  <div sec:authorize="hasRole('ROLE_ADMIN')">Has Role ROLE_ADMIN</div>
-  <div sec:authorize="hasRole('ROLE_USER')">Has Role ROLE_USER</div>
-  <div sec:authorize="hasRole('ADMIN')">Has Role ADMIN</div>
-  <div sec:authorize="hasRole('USER')">Has Role USER</div>
-
+    <div sec:authorize="hasRole('ADMIN')">
+      <a href="/admin/members">View All Members</a>
+    </div>
+  </footer>
 </div>
 
 </body>
