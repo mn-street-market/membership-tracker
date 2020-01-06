@@ -21,24 +21,14 @@ class HomeController {
 
     @GetMapping
     String get(Principal principal, Model model) {
-        MemberEntity member = memberRepository.findByEmail(principal?.getName()).orElse(null)
-
-        if (member) {
-            model.addAttribute('member', member)
-        }
-
+        bindMember(principal, model)
         return 'home'
     }
 
     @GetMapping('my-account')
     @RolesAllowed(['ROLE_USER'])
     String getMyAccount(Principal principal, Model model) {
-        MemberEntity member = memberRepository.findByEmail(principal?.getName()).orElse(null)
-
-        if (member) {
-            model.addAttribute('member', member)
-        }
-
+        bindMember(principal, model)
         return 'view-member'
     }
 
@@ -55,6 +45,11 @@ class HomeController {
         model.addAttribute('referralLink', link)
 
         return 'refer-friend'
+    }
+
+    private void bindMember(Principal principal, Model model) {
+        MemberEntity member = memberRepository.findByEmail(principal?.getName()).orElse(null)
+        model.addAttribute('member', member)
     }
 
 }
