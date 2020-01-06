@@ -33,6 +33,7 @@ class ApplicationService {
                     firstName: application.firstName,
                     lastName: application.lastName,
                     email: application.email,
+                    membershipFeeAmount: application.student ? 20.0 : 100.0,
                     joinDate: new Timestamp(System.currentTimeMillis()),
                     addresses: [
                             new MemberAddressEntity(
@@ -47,7 +48,7 @@ class ApplicationService {
                                     phoneNumber: application.phoneNumber,
                             )
                     ],
-                    family: application.familyMembers.collect {
+                    family: application.student ? [] : application.familyMembers.collect {
                         new MemberFamilyEntity(
                                 name: it
                         )
