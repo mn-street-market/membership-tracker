@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
-import javax.validation.Valid
 import javax.validation.Validation
 import javax.validation.Validator
 import java.sql.Timestamp
@@ -23,41 +22,46 @@ class ApplicationService {
 
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator()
 
-    boolean submit(@Valid ApplicationDto application) {
+    boolean submit(ApplicationDto application) {
 
         validate(application)
 
         boolean isValid = application.errorMessages.isEmpty()
-        if (isValid)
-            memberRepository.save(new MemberEntity(
-                    firstName: application.firstName,
-                    lastName: application.lastName,
-                    email: application.email,
-                    membershipFeeAmount: application.student ? 20.0 : 100.0,
-                    joinDate: new Timestamp(System.currentTimeMillis()),
-                    addresses: [
-                            new MemberAddressEntity(
-                                    streetAddress: [application.streetAddress, application.apartmentNumber].join(' '),
-                                    city: application.city,
-                                    state: application.state,
-                                    zipCode: application.zipCode,
-                            )
-                    ],
-                    phoneNumbers: [
-                            new MemberPhoneEntity(
-                                    phoneNumber: application.phoneNumber,
-                            )
-                    ],
-                    family: application.student ? [] : application.familyMembers.collect {
-                        new MemberFamilyEntity(
-                                name: it
-                        )
-                    },
-                    password: encode(application.password1),
-            ))
+        if (isValid) {
+            memberRepository.save(toMemberEntity(application))
+        }
 
         return isValid
 
+    }
+
+    private MemberEntity toMemberEntity(ApplicationDto application) {
+        new MemberEntity(
+                firstName: application.firstName,
+                lastName: application.lastName,
+                email: application.email,
+                membershipFeeAmount: application.student ? 20.0 : 100.0,
+                joinDate: new Timestamp(System.currentTimeMillis()),
+                addresses: [
+                        new MemberAddressEntity(
+                                streetAddress: [application.streetAddress, application.apartmentNumber].join(' '),
+                                city: application.city,
+                                state: application.state,
+                                zipCode: application.zipCode,
+                        )
+                ],
+                phoneNumbers: [
+                        new MemberPhoneEntity(
+                                phoneNumber: application.phoneNumber,
+                        )
+                ],
+                family: application.student ? [] : application.familyMembers.collect {
+                    new MemberFamilyEntity(
+                            name: it
+                    )
+                },
+                password: encode(application.password1),
+        )
     }
 
     private void validate(ApplicationDto application) {

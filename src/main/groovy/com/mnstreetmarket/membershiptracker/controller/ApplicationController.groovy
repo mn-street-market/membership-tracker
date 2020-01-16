@@ -29,6 +29,7 @@ class ApplicationController {
                 new IllegalArgumentException('Invalid Referral Code')
             })
         }
+        model.addAttribute('application', new ApplicationDto())
         return 'application'
     }
 
