@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       lang="en">
-<div th:replace="head"></div>
+<div th:replace="fragments/head"></div>
 <body>
 <div class="container">
-  <div th:replace="header"></div>
+  <div th:replace="fragments/header"></div>
 
   <h1>Home</h1>
 
@@ -25,7 +25,7 @@
         th:text="${member.membershipPaidDate}"></span>.</p>
   </div>
 
-  <div th:replace="footer"></div>
+  <div th:replace="fragments/footer"></div>
 </div>
 
 </body>
