@@ -43,4 +43,8 @@ class ApplicationDto {
     String getErrorMessage() {
         errorMessages ? "Error: ${errorMessages.join(', ')}" : null
     }
+
+    String getCurrentView() {
+        email ? 'application-address' : 'application-contact-info'
+    }
 }

@@ -9,7 +9,8 @@
 
   <h1>Home</h1>
 
-  <span th:text="${alert}"></span>
+  <div th:if="${alert}" class="alert alert-success" role="alert"
+       th:text="${alert}"></div>
 
   <div sec:authorize="!isAuthenticated()">
     <a href="/join">Join the Minnesota Street Market Co-op</a> or <a href="/login">login</a> if you are already a member

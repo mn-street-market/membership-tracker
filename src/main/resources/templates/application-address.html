@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<div th:replace="fragments/head"></div>
+<body>
+
+<div class="container">
+  <div th:replace="fragments/header"></div>
+
+  <h1>Application</h1>
+
+  <div th:if="${referral}" class="alert alert-success" role="alert"
+       th:text="${'Referral reward will be applied to ' + referral.firstName + ' ' + referral.lastName + ' after membership is paid.'}"></div>
+  <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+
+  <form action="/join" method="post" th:object="${application}">
+    <label for="streetAddress">Street Address</label><input name="streetAddress" th:field="*{streetAddress}"
+                                                            id="streetAddress" placeholder="123 Oak Street"
+                                                            class="form-control"/><br/>
+    <label for="apartmentNumber">Apt #/Room #/Unit</label><input name="apartmentNumber" th:field="*{apartmentNumber}"
+                                                                 id="apartmentNumber" placeholder="#205"
+                                                                 class="form-control"/><br/>
+    <label for="city">City</label><input name="city" th:field="*{city}" id="city" placeholder="City"
+                                         class="form-control"/><br/>
+    <label for="state">State</label><input name="state" th:field="*{state}" id="state" placeholder="State"
+                                           class="form-control"/><br/>
+    <label for="zipCode">Zip Code</label><input name="zipCode" th:field="*{zipCode}" id="zipCode" placeholder="Zip Code"
+                                                class="form-control"/><br/>
+    <button type="submit">Submit Form</button>
+    <button type="reset">Clear Form</button>
+  </form>
+
+  <div th:replace="fragments/footer"></div>
+
+</div>
+</body>
+</html>
