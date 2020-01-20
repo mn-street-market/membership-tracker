@@ -57,10 +57,8 @@ class ApplicationService {
                                 phoneNumber: application.contactInfo.phoneNumber,
                         )
                 ],
-                family: application.contactInfo.student ? [] : application.familyMembers.collect {
-                    new MemberFamilyEntity(
-                            name: it
-                    )
+                family: application.contactInfo.student ? [] : application.familyMembers.familyMembers.collect {
+                    new MemberFamilyEntity(name: it)
                 },
                 password: encode(application.register.password1),
         )
