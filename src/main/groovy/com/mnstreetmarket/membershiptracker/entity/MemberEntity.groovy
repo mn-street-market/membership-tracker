@@ -28,6 +28,8 @@ class MemberEntity {
     Boolean isActive
     @Column(nullable = true)
     Boolean isStudentMember
+    @Column(nullable = true)
+    Boolean isAdmin
 
     @Column(nullable = true)
     Timestamp joinDate

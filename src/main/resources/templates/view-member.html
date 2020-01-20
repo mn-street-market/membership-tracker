@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       lang="en">
 <div th:replace="fragments/head"></div>
 <body>
@@ -30,6 +31,10 @@
     <li th:each="address : ${member.addresses}"
         th:text="${address.streetAddress + ', ' + address.city + ', ' + address.state + ' ' + address.zipCode}"></li>
   </ul>
+
+  <span sec:authorize="hasRole('ADMIN')">
+      <span>Is Admin?</span> <input type="checkbox" th:checked="${member.isAdmin}"/>
+  </span>
 
   <div th:replace="fragments/footer"></div>
 

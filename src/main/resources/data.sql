@@ -1,8 +1,10 @@
-INSERT INTO member (member_id, first_name, last_name, is_active, email, password, join_date, membership_fee_amount,
+INSERT INTO member (member_id, first_name, last_name, is_active, is_admin, email, password, join_date,
+                    membership_fee_amount,
                     membership_paid_date)
-VALUES (1, 'Aliko', 'Dangote', true, 'a@test.com', '{noop}pass', '2017-12-31', '99.99', '2018-01-02 12:31:11'),
-       (2, 'Bill', 'Gates', true, 'b@test.com', '{noop}pass', '2017-12-31', '19.99', null),
-       (3, 'Folrunsho', 'Alakija', true, 'c@test.com', '{noop}pass', '2017-12-31', '99.99', '2018-01-02 12:31:11');
+VALUES (1, 'Aliko', 'Dangote', true, false, 'a@test.com', '{noop}pass', '2017-12-31', '99.99', '2018-01-02 12:31:11'),
+       (2, 'Bill', 'Gates', true, false, 'b@test.com', '{noop}pass', '2017-12-31', '19.99', null),
+       (3, 'Folrunsho', 'Alakija', true, true, 'c@test.com', '{noop}pass', '2017-12-31', '99.99',
+        '2018-01-02 12:31:11');
 
 INSERT INTO member_phone (member_phone_id, member_id, phone_number) VALUES
   (1, 1, '123-123-1234'),

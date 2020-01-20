@@ -36,7 +36,7 @@ class MemberDetailsService implements UserDetailsService {
                 new SimpleGrantedAuthority('ROLE_USER')
         ]
 
-        if (member.email == 'c@test.com') {
+        if (member.isAdmin) {
             authorities << new SimpleGrantedAuthority('ROLE_ADMIN')
         }
 
