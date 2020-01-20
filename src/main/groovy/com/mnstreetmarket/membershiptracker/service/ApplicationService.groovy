@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
-import javax.validation.Validation
-import javax.validation.Validator
 import java.sql.Timestamp
 
 @Service
@@ -20,14 +18,18 @@ class ApplicationService {
     @Autowired
     MemberRepository memberRepository
 
-    Validator validator = Validation.buildDefaultValidatorFactory().getValidator()
-
     boolean submit(ApplicationDto application) {
 
-        validate(application)
+        if (memberRepository.findByEmail(application.contactInfo.email).isPresent()) {
+            application.errorMessages << "Member with email $application.contactInfo.email already exists!"
+        }
+
+        if (application.register.password1 != application.register.password2) {
+            application.errorMessages << 'Passwords do not match'
+        }
 
         boolean isValid = application.errorMessages.isEmpty()
-        if (isValid) {
+        if (application.isValid()) {
             memberRepository.save(toMemberEntity(application))
         }
 
@@ -37,43 +39,31 @@ class ApplicationService {
 
     private MemberEntity toMemberEntity(ApplicationDto application) {
         new MemberEntity(
-                firstName: application.firstName,
-                lastName: application.lastName,
-                email: application.email,
-                membershipFeeAmount: application.student ? 20.0 : 100.0,
+                firstName: application.contactInfo.firstName,
+                lastName: application.contactInfo.lastName,
+                email: application.contactInfo.email,
+                membershipFeeAmount: application.contactInfo.student ? 20.0 : 100.0,
                 joinDate: new Timestamp(System.currentTimeMillis()),
                 addresses: [
                         new MemberAddressEntity(
-                                streetAddress: [application.streetAddress, application.apartmentNumber].join(' '),
-                                city: application.city,
-                                state: application.state,
-                                zipCode: application.zipCode,
+                                streetAddress: [application.address.streetAddress, application.address.apartmentNumber].join(' '),
+                                city: application.address.city,
+                                state: application.address.state,
+                                zipCode: application.address.zipCode,
                         )
                 ],
                 phoneNumbers: [
                         new MemberPhoneEntity(
-                                phoneNumber: application.phoneNumber,
+                                phoneNumber: application.contactInfo.phoneNumber,
                         )
                 ],
-                family: application.student ? [] : application.familyMembers.collect {
+                family: application.contactInfo.student ? [] : application.familyMembers.collect {
                     new MemberFamilyEntity(
                             name: it
                     )
                 },
-                password: encode(application.password1),
+                password: encode(application.register.password1),
         )
-    }
-
-    private void validate(ApplicationDto application) {
-        application.errorMessages.addAll(validator.validate(application).collect { it.message })
-
-        if (memberRepository.findByEmail(application.email).isPresent()) {
-            application.errorMessages << "Member with email $application.email already exists!"
-        }
-
-        if (application.password1 != application.password2) {
-            application.errorMessages << 'Passwords do not match'
-        }
     }
 
     static String encode(String unencoded) {

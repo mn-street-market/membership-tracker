@@ -1,50 +1,21 @@
 package com.mnstreetmarket.membershiptracker.dto
 
-import javax.validation.constraints.Email
-import javax.validation.constraints.NotBlank
+import com.mnstreetmarket.membershiptracker.trait.ErrorTrait
 
-class ApplicationDto {
+import javax.validation.Valid
 
-    @NotBlank(message = 'First Name must not be blank')
-    String firstName
+class ApplicationDto implements ErrorTrait {
 
-    @NotBlank(message = 'Last Name must not be blank')
-    String lastName
+    @Valid
+    ApplicationContactInfoDto contactInfo
 
-    @Email(message = 'Must Be a well-formed email address')
-    String email
+    @Valid
+    ApplicationAddressDto address
 
-    @NotBlank(message = 'Phone Number must not be blank')
-    String phoneNumber
+    @Valid
+    ApplicationFamilyMembersDto familyMembers
 
-    @NotBlank(message = 'Password must not be blank')
-    String password1
-    String password2
+    @Valid
+    ApplicationRegisterDto register
 
-    @NotBlank(message = 'Street Address must not be blank')
-    String streetAddress
-    String apartmentNumber
-
-    @NotBlank(message = 'City must not be blank')
-    String city
-
-    @NotBlank(message = 'State must not be blank')
-    String state
-
-    @NotBlank(message = 'Zip Code must not be blank')
-    String zipCode
-
-    boolean student
-
-    List<String> familyMembers = []
-
-    List<String> errorMessages = []
-
-    String getErrorMessage() {
-        errorMessages ? "Error: ${errorMessages.join(', ')}" : null
-    }
-
-    String getCurrentView() {
-        email ? 'application-address' : 'application-contact-info'
-    }
 }

@@ -13,7 +13,7 @@
        th:text="${'Referral reward will be applied to ' + referral.firstName + ' ' + referral.lastName + ' after membership is paid.'}"></div>
   <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
 
-  <form action="/join" method="post" th:object="${application}">
+  <form action="/join/register" method="post" th:object="${register}">
     <label for="password1">Password</label><input name="password1" th:field="*{password1}" id="password1"
                                                   placeholder="Password"
                                                   type="password" class="form-control"/>

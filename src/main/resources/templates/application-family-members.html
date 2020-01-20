@@ -13,37 +13,7 @@
        th:text="${'Referral reward will be applied to ' + referral.firstName + ' ' + referral.lastName + ' after membership is paid.'}"></div>
   <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
 
-  <form action="/join" method="post" th:object="${application}">
-    <label for="firstName">First Name</label><input type="text" name="firstName" th:field="*{firstName}" id="firstName"
-                                                    placeholder="First Name"
-                                                    class="form-control"/><br/>
-    <label for="lastName">Last Name</label><input name="lastName" th:field="*{lastName}" id="lastName"
-                                                  placeholder="Last Name"
-                                                  class="form-control"/><br/>
-    <label for="email">Email</label><input name="email" th:field="*{email}" id="email" placeholder="Email"
-                                           class="form-control"/><br/>
-    <label for="phoneNumber">Phone Number</label><input name="phoneNumber" th:field="*{phoneNumber}" id="phoneNumber"
-                                                        placeholder="320-363-1234" class="form-control"/><br/>
-    <label for="password1">Password</label><input name="password1" th:field="*{password1}" id="password1"
-                                                  placeholder="Password"
-                                                  type="password" class="form-control"/>
-    <input name="password2" th:field="*{password2}" id="password2" placeholder="Confirm Password" type="password"
-           class="form-control"/><br/>
-    <label for="streetAddress">Street Address</label><input name="streetAddress" th:field="*{streetAddress}"
-                                                            id="streetAddress" placeholder="123 Oak Street"
-                                                            class="form-control"/><br/>
-    <label for="apartmentNumber">Apt #/Room #/Unit</label><input name="apartmentNumber" th:field="*{apartmentNumber}"
-                                                                 id="apartmentNumber" placeholder="#205"
-                                                                 class="form-control"/><br/>
-    <label for="city">City</label><input name="city" th:field="*{city}" id="city" placeholder="City"
-                                         class="form-control"/><br/>
-    <label for="state">State</label><input name="state" th:field="*{state}" id="state" placeholder="State"
-                                           class="form-control"/><br/>
-    <label for="zipCode">Zip Code</label><input name="zipCode" th:field="*{zipCode}" id="zipCode" placeholder="Zip Code"
-                                                class="form-control"/><br/>
-    <label for="student">Are you a student?</label><input name="student" th:field="*{student}" id="student"
-                                                          type="checkbox"
-                                                          class="form-control"><br/>
+  <form action="/join/familyMembers" method="post" th:object="${familyMembers}">
     <label for="family">Family</label>
     <input name="familyMembers" id="family" placeholder="Family member 1" class="form-control"><br/>
     <input name="familyMembers" placeholder="Family member 2" class="form-control"><br/>

@@ -13,7 +13,7 @@
        th:text="${'Referral reward will be applied to ' + referral.firstName + ' ' + referral.lastName + ' after membership is paid.'}"></div>
   <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
 
-  <form action="/join" method="post" th:object="${application}">
+  <form action="/join/contact" method="post" th:object="${contactInfo}">
     <label for="firstName">First Name</label><input type="text" name="firstName" th:field="*{firstName}" id="firstName"
                                                     placeholder="First Name"
                                                     class="form-control"/><br/>
@@ -24,7 +24,9 @@
                                            class="form-control"/><br/>
     <label for="phoneNumber">Phone Number</label><input name="phoneNumber" th:field="*{phoneNumber}" id="phoneNumber"
                                                         placeholder="320-363-1234" class="form-control"/><br/>
-
+    <label for="student">Are you a student?</label><input name="student" th:field="*{student}" id="student"
+                                                          type="checkbox"
+                                                          class="form-control"><br/>
     <button type="submit">Submit Form</button>
     <button type="reset">Clear Form</button>
   </form>
