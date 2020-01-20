@@ -79,7 +79,9 @@ class ApplicationController {
         getApplication(model).address = address
         bindAttributes(model, address)
 
-        return address.valid ? ApplicationView.FAMILY_MEMBERS : ApplicationView.ADDRESS
+        return !address.valid ? ApplicationView.ADDRESS :
+                getApplication(model).contactInfo.isStudent() ? ApplicationView.REGISTER :
+                        ApplicationView.FAMILY_MEMBERS
     }
 
     @PostMapping('/familyMembers')
