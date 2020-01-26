@@ -1,13 +1,1 @@
-package com.mnstreetmarket.membershiptracker
-
-import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
-
-@SpringBootTest
-class MembershipTrackerApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+package com.mnstreetmarket.membershiptrackerimport com.mnstreetmarket.membershiptracker.dto.ApplicationAddressDtoimport com.mnstreetmarket.membershiptracker.dto.ApplicationContactInfoDtoimport com.mnstreetmarket.membershiptracker.dto.ApplicationDtoimport com.mnstreetmarket.membershiptracker.dto.ApplicationFamilyMembersDtoimport com.mnstreetmarket.membershiptracker.pdf.PdfWriterimport org.junit.jupiter.api.Testimport org.springframework.beans.factory.annotation.Autowiredimport org.springframework.boot.test.context.SpringBootTest@SpringBootTestclass MembershipTrackerApplicationTests {	@Autowired	PdfWriter pdfWriter	@Test	void contextLoads() {	}	@Test	void createPdf() {		pdfWriter.generateApplicationPdf(new ApplicationDto(				contactInfo: new ApplicationContactInfoDto(						firstName: 'Joe',						lastName: 'Degiovanni',						phoneNumber: '111-222-3333',						email: 'joe@test.com',				),				address: new ApplicationAddressDto(						streetAddress: '123 Fake Street',						city: 'Fakeville',						state: 'FK',						zipCode: '12345',				),				familyMembers: new ApplicationFamilyMembersDto(						familyMembers: ['Kristina', 'Ada', 'Alice']				)		))	}}

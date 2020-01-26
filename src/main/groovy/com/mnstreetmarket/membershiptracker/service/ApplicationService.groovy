@@ -5,6 +5,7 @@ import com.mnstreetmarket.membershiptracker.entity.MemberAddressEntity
 import com.mnstreetmarket.membershiptracker.entity.MemberEntity
 import com.mnstreetmarket.membershiptracker.entity.MemberFamilyEntity
 import com.mnstreetmarket.membershiptracker.entity.MemberPhoneEntity
+import com.mnstreetmarket.membershiptracker.pdf.PdfWriter
 import com.mnstreetmarket.membershiptracker.repository.MemberRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -17,6 +18,9 @@ class ApplicationService {
 
     @Autowired
     MemberRepository memberRepository
+
+    @Autowired
+    PdfWriter pdfWriter
 
     boolean submit(ApplicationDto application) {
 

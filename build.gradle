@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-security'
+	compile 'org.apache.pdfbox:pdfbox:2.0.4'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
