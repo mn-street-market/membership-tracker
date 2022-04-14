@@ -8,12 +8,13 @@
 <div class="container">
   <div th:replace="fragments/header"></div>
 
-  <h1>Member</h1>
-  <a href="/my-account/edit">Edit</a>
+  <h1>Edit Member</h1>
 
-  <h2 th:text="${member.firstName + ' ' + member.lastName}"></h2>
-
-  <span th:text="${member.email}"></span>
+  <form>
+  First name: <input id="first" name="first" th:value="${member.firstName}"/><br/>
+  Last name: <input id="last" name="last" th:value="${member.lastName}"/><br/>
+  Email: <input id="email" name="email" th:value="${member.email}"/><br/>
+  </form>
 
   <h3>Phone</h3>
   <ul>

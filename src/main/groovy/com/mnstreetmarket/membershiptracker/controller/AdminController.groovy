@@ -31,4 +31,12 @@ class AdminController {
         }))
         return 'view-member'
     }
+
+    @GetMapping('/members/{memberId}/edit')
+    String editMember(@PathVariable int memberId, Model model) {
+        model.addAttribute("member", memberRepository.findById(memberId).orElseThrow({
+            new IllegalArgumentException("Member $memberId does not exist")
+        }))
+        return 'edit-member'
+    }
 }

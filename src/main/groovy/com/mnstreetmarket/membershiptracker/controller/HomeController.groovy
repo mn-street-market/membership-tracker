@@ -32,6 +32,13 @@ class HomeController {
         return 'view-member'
     }
 
+    @GetMapping('my-account/edit')
+    @RolesAllowed(['ROLE_USER'])
+    String editMyAccount(Principal principal, Model model) {
+        bindMember(principal, model)
+        return 'edit-member'
+    }
+
     @GetMapping('refer-friend')
     @RolesAllowed(['ROLE_USER'])
     String getReferFriend(Principal principal, Model model, UriComponentsBuilder uriComponentsBuilder) {
