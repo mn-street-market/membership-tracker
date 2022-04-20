@@ -45,13 +45,15 @@ class HomeController {
     @RolesAllowed(['ROLE_USER'])
     String updateMyAccount(Principal principal, Model model, @ModelAttribute MemberEntity updated) {
         bindMember(principal, model)
-        MemberEntity current = model.getAttribute('member');
-        if(updated.memberId != current.memberId) {
+
+        MemberEntity current = model.getAttribute('member')
+        if (updated.memberId != current.memberId) {
             throw new IllegalArgumentException("fuck $updated  ${model.getAttribute('member')}")
-        } else {
-            updated.password = current.password
-            memberRepository.save(updated)
         }
+
+        updated.password = current.password
+        memberRepository.save(updated)
+
         return 'view-member'
     }
 
