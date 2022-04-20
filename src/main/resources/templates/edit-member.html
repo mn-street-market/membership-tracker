@@ -10,10 +10,12 @@
 
   <h1>Edit Member</h1>
 
-  <form>
-  First name: <input id="first" name="first" th:value="${member.firstName}"/><br/>
-  Last name: <input id="last" name="last" th:value="${member.lastName}"/><br/>
-  Email: <input id="email" name="email" th:value="${member.email}"/><br/>
+  <form action="/my-account/update" method="post" th:object="${member}">
+    <input type="hidden" th:name="id" th:field="*{memberId}"/>
+  First name: <input id="first" name="firstName" th:field="*{firstName}"/><br/>
+  Last name: <input id="last" name="lastName" th:field="*{lastName}"/><br/>
+  Email: <input id="email" name="email" th:field="*{email}"/><br/>
+    <button type="submit">Submit Form</button>
   </form>
 
   <h3>Phone</h3>

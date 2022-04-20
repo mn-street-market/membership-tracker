@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.util.UriComponentsBuilder
 
@@ -37,6 +39,20 @@ class HomeController {
     String editMyAccount(Principal principal, Model model) {
         bindMember(principal, model)
         return 'edit-member'
+    }
+
+    @PostMapping('my-account/update')
+    @RolesAllowed(['ROLE_USER'])
+    String updateMyAccount(Principal principal, Model model, @ModelAttribute MemberEntity updated) {
+        bindMember(principal, model)
+        MemberEntity current = model.getAttribute('member');
+        if(updated.memberId != current.memberId) {
+            throw new IllegalArgumentException("fuck $updated  ${model.getAttribute('member')}")
+        } else {
+            updated.password = current.password
+            memberRepository.save(updated)
+        }
+        return 'view-member'
     }
 
     @GetMapping('refer-friend')

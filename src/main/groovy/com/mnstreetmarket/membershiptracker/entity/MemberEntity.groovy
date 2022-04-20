@@ -1,5 +1,7 @@
 package com.mnstreetmarket.membershiptracker.entity
 
+import groovy.transform.ToString
+
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -14,6 +16,7 @@ import java.sql.Timestamp
 
 @Entity
 @Table(name = 'member')
+@ToString
 class MemberEntity {
 
     @Id
