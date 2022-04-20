@@ -48,7 +48,7 @@ class HomeController {
 
         MemberEntity current = model.getAttribute('member')
         if (updated.memberId != current.memberId) {
-            throw new IllegalArgumentException("fuck $updated  ${model.getAttribute('member')}")
+            throw new IllegalArgumentException()
         }
 
         updated.password = current.password
