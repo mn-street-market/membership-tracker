@@ -11,6 +11,7 @@
   <h1>Edit Member</h1>
 
   <form action="/my-account/update" method="post" th:object="${member}">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     <input type="hidden" th:name="id" th:field="*{memberId}"/>
   First name: <input id="first" name="firstName" th:field="*{firstName}"/><br/>
   Last name: <input id="last" name="lastName" th:field="*{lastName}"/><br/>
