@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<div th:replace="fragments/head"></div>
+<body>
+<div class="container">
+  <div th:replace="fragments/header"></div>
+
+  <h1>Home</h1>
+
+  <div th:if="${alert}" class="alert alert-success" role="alert"
+       th:text="${alert}"></div>
+  
+  <div sec:authorize="isAuthenticated()">
+    <strong>TO DO...</strong>
+  </div>
+
+  <div th:replace="fragments/footer"></div>
+</div>
+
+</body>
+</html>
