@@ -12,6 +12,7 @@ class StripeConfig {
     final String webhookSecret
     final String paymentMethodTypes
     final String membershipPrice
+    final String studentPrice
 
     StripeConfig(Dotenv dotenv) {
         secretKey = dotenv.get("STRIPE_PUBLISHABLE_KEY")
@@ -19,6 +20,7 @@ class StripeConfig {
         webhookSecret = dotenv.get("STRIPE_WEBHOOK_SECRET")
         paymentMethodTypes = dotenv.get("PAYMENT_METHOD_TYPES")
         membershipPrice = dotenv.get("PRICE")
+        studentPrice = dotenv.get("STUDENT_PRICE")
 
         Stripe.apiKey = dotenv.get("STRIPE_SECRET_KEY")
         Stripe.setAppInfo(

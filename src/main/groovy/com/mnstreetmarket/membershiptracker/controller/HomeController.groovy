@@ -96,7 +96,7 @@ class HomeController {
                 .setCustomerEmail(member.email)
                 .addLineItem(new SessionCreateParams.LineItem.Builder()
                         .setQuantity(1)
-                        .setPrice(stripeConfig.membershipPrice)
+                        .setPrice(member.isStudentMember ? stripeConfig.studentPrice : stripeConfig.membershipPrice)
                         .build())
                 .build()
 
