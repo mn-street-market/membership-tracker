@@ -20,7 +20,7 @@
     <strong> Welcome <span th:text="${member.firstName}"></span> </strong>
     <p>You have been a member since <span th:text="${member.joinDate}"></span>.</p>
     <p th:if="${member.membershipPaidDate == null}">Your membership fee of $<span
-        th:text="${member.membershipFeeAmount}"></span> has not been received yet. <a href="/pay">Pay Now</a>.</p>
+        th:text="${member.membershipFeeAmount}"></span> has not been received yet. <a th:href="${paymentUrl}">Pay Now</a>.</p>
     <p th:if="${member.membershipPaidDate != null}">Your membership fee of $<span
         th:text="${member.membershipFeeAmount}"></span> was received on <span
         th:text="${member.membershipPaidDate}"></span>.</p>

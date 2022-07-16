@@ -11,10 +11,6 @@
 
   <div th:if="${alert}" class="alert alert-success" role="alert"
        th:text="${alert}"></div>
-  
-  <div sec:authorize="isAuthenticated()">
-    <strong>TO DO...</strong>
-  </div>
 
   <div th:replace="fragments/footer"></div>
 </div>
