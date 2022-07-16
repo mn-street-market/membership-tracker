@@ -6,15 +6,14 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class StripeConfig {
-
-    final Dotenv dotenv = Dotenv.load()
+    
     final String secretKey
     final String publicKey
     final String webhookSecret
     final String paymentMethodTypes
     final String membershipPrice
-    
-    StripeConfig() {
+
+    StripeConfig(Dotenv dotenv) {
         secretKey = dotenv.get("STRIPE_PUBLISHABLE_KEY")
         publicKey = dotenv.get("STRIPE_SECRET_KEY")
         webhookSecret = dotenv.get("STRIPE_WEBHOOK_SECRET")
