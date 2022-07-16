@@ -34,6 +34,7 @@ class PaymentController {
             MemberEntity member = memberRepository.findByEmail(session.customerEmail)
                     .orElseThrow { new IllegalArgumentException("Unable to find customer with email '${session.customerEmail}'") }
             member.setMembershipPaidDate(new Timestamp(Instant.now().toEpochMilli()))
+            memberRepository.save(member)
             model.addAttribute("alert", "it worked! $session.customerEmail has paid!")
         } else {
             model.addAttribute('alert', 'payment not received')
