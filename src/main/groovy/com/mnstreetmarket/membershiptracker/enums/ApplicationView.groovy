@@ -7,6 +7,9 @@ enum ApplicationView {
     FAMILY_MEMBERS('application-family-members'),
     REGISTER('application-register'),
     PAYMENT('pay'),
+    MEMBERS('members'),
+    VIEW_MEMBER('view-member'),
+    EDIT_MEMBER('edit-member'),
 
     final String viewName
 

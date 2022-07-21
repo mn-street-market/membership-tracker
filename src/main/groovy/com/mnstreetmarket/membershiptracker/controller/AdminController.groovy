@@ -1,5 +1,6 @@
 package com.mnstreetmarket.membershiptracker.controller
 
+import com.mnstreetmarket.membershiptracker.enums.ApplicationView
 import com.mnstreetmarket.membershiptracker.repository.MemberRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -21,22 +22,24 @@ class AdminController {
     @GetMapping('/members')
     String getMembers(Model model) {
         model.addAttribute("members", memberRepository.findAll())
-        return 'members'
+        return ApplicationView.MEMBERS
     }
 
     @GetMapping('/members/{memberId}')
     String getMember(@PathVariable int memberId, Model model) {
-        model.addAttribute("member", memberRepository.findById(memberId).orElseThrow({
-            new IllegalArgumentException("Member $memberId does not exist")
-        }))
-        return 'view-member'
+        bindMember(model, memberId)
+        return ApplicationView.VIEW_MEMBER
     }
 
     @GetMapping('/members/{memberId}/edit')
     String editMember(@PathVariable int memberId, Model model) {
+        bindMember(model, memberId)
+        return ApplicationView.EDIT_MEMBER
+    }
+
+    private Model bindMember(Model model, int memberId) {
         model.addAttribute("member", memberRepository.findById(memberId).orElseThrow({
             new IllegalArgumentException("Member $memberId does not exist")
         }))
-        return 'edit-member'
     }
 }

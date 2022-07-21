@@ -14,7 +14,7 @@
   <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
 
   <form action="/join/familyMembers" method="post" th:object="${familyMembers}">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     <label for="family">Family</label>
     <input name="familyMembers" id="family" placeholder="Family member 1" class="form-control"><br/>
     <input name="familyMembers" placeholder="Family member 2" class="form-control"><br/>

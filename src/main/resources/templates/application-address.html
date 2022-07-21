@@ -14,7 +14,7 @@
   <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
 
   <form action="/join/address" method="post" th:object="${address}">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     <label for="streetAddress">Street Address</label><input name="streetAddress" th:field="*{streetAddress}"
                                                             id="streetAddress" placeholder="123 Oak Street"
                                                             class="form-control"/><br/>

@@ -5,28 +5,42 @@
 <body>
 
 <div class="container">
-  <div th:replace="fragments/header"></div>
+    <div th:replace="fragments/header"></div>
 
-  <h1>Application</h1>
+    <h1>Application</h1>
 
-  <div th:if="${referral}" class="alert alert-success" role="alert"
-       th:text="${'Referral reward will be applied to ' + referral.firstName + ' ' + referral.lastName + ' after membership is paid.'}"></div>
-  <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+    <div th:if="${referral}" class="alert alert-success" role="alert"
+         th:text="${'Referral reward will be applied to ' + referral.firstName + ' ' + referral.lastName + ' after membership is paid.'}"></div>
+    <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
 
-  <form action="/join/register" method="post" th:object="${register}">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-    <label for="password1">Password</label><input name="password1" th:field="*{password1}" id="password1"
-                                                  placeholder="Password"
-                                                  type="password" class="form-control"/>
-    <input name="password2" th:field="*{password2}" id="password2" placeholder="Confirm Password" type="password"
-           class="form-control"/><br/>
+    <form action="/join/register" method="post" th:object="${register}">
+        <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <label for="password1">Password</label><input name="password1" th:field="*{password1}" id="password1"
+                                                      placeholder="Password"
+                                                      type="password" class="form-control"/>
+        <input name="password2" th:field="*{password2}" id="password2" placeholder="Confirm Password" type="password"
+               class="form-control"/><br/>
 
-    <button type="submit">Submit Form</button>
-    <button type="reset">Clear Form</button>
-  </form>
+        <input type="checkbox" name="accept" id="accept" onchange="enableSubmit()"/>
+        <label for="accept">I agree to buy 1 Class A (voting) share for $20.00 and 4 Class B
+            (non-voting) shares at $20.00 each for a lifetime membership in
+            the Minnesota Street Market (St. Joseph Food Cooperative) for a
+            total of $100.00.
+            To see Bylaws and members provisions, 
+            <a target="_blank" href="https://mnstreetmarket.files.wordpress.com/2022/05/mnstmkt-bylaws-2022-amendment.pdf">click here</a></label>
+        <br/>
+        
+        <button id="submit" type="submit" disabled=true>Submit Form</button>
+        <button type="reset">Clear Form</button>
+    </form>
 
-  <div th:replace="fragments/footer"></div>
+    <div th:replace="fragments/footer"></div>
 
 </div>
 </body>
+<script>
+    function enableSubmit() {
+        document.getElementById("submit").disabled = !document.getElementById("accept").checked;
+    }
+</script>
 </html>

@@ -6,42 +6,43 @@
 <body>
 
 <div class="container">
-  <div th:replace="fragments/header"></div>
+    <div th:replace="fragments/header"></div>
 
-  <h1>Edit Member</h1>
+    <h1>Edit Member</h1>
 
-  <form action="/my-account/update" method="post" th:object="${member}">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-    <input type="hidden" th:name="id" th:field="*{memberId}"/>
-  First name: <input id="first" name="firstName" th:field="*{firstName}"/><br/>
-  Last name: <input id="last" name="lastName" th:field="*{lastName}"/><br/>
-  Email: <input id="email" name="email" th:field="*{email}"/><br/>
-    <button type="submit">Submit Form</button>
-  </form>
+    <form action="/my-account/update" method="post" th:object="${member}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <input type="hidden" th:name="id" th:field="*{memberId}"/>
+        First name: <input id="first" name="firstName" th:field="*{firstName}"/><br/>
+        Last name: <input id="last" name="lastName" th:field="*{lastName}"/><br/>
+        Email: <input id="email" name="email" th:field="*{email}"/><br/>
 
-  <h3>Phone</h3>
-  <ul>
-    <li th:each="phone : ${member.phoneNumbers}"
-        th:text="${phone.phoneNumber}"></li>
-  </ul>
+        <h3>Phone</h3>
+        <ul>
+            <li th:each="phone : ${member.phoneNumbers}">
+                <input name="phone" th:field="*{phone.phoneNumber}"/></li>
+        </ul>
 
-  <h3>Family Members</h3>
-  <ul>
-    <li th:each="familyMember : ${member.family}"
-        th:text="${familyMember.name}"></li>
-  </ul>
+        <h3>Family Members</h3>
+        <ul>
+            <li th:each="familyMember : ${member.family}"
+                th:text="${familyMember.name}"></li>
+        </ul>
 
-  <h3>Address</h3>
-  <ul>
-    <li th:each="address : ${member.addresses}"
-        th:text="${address.streetAddress + ', ' + address.city + ', ' + address.state + ' ' + address.zipCode}"></li>
-  </ul>
+        <h3>Address</h3>
+        <ul>
+            <li th:each="address : ${member.addresses}"
+                th:text="${address.streetAddress + ', ' + address.city + ', ' + address.state + ' ' + address.zipCode}"></li>
+        </ul>
 
-  <span sec:authorize="hasRole('ADMIN')">
-      <span>Is Admin?</span> <input type="checkbox" th:checked="${member.isAdmin}"/>
-  </span>
+        <span sec:authorize="hasRole('ADMIN')">
+            <span>Is Admin?</span> <input type="checkbox" th:checked="${member.isAdmin}"/>
+        </span>
 
-  <div th:replace="fragments/footer"></div>
+        <button type="submit">Submit Form</button>
+    </form>
+
+    <div th:replace="fragments/footer"></div>
 
 </div>
 
