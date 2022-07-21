@@ -18,7 +18,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers('/', '/join/**', '/h2-console/**').permitAll()
+                .antMatchers('/', '/join/**', '/h2-console/**', '/keep-alive.json').permitAll()
                 .anyRequest().authenticated().and().formLogin()
 
         if (h2ConsoleEnabled) {
